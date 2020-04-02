@@ -1,0 +1,11 @@
+#!/bin/sh
+
+composer install --no-interaction --prefer-dist --optimize-autoloader
+
+npm i
+npm run dev
+
+# todo: replace fix for newly created files
+chmod -R 777 storage bootstrap/cache /tmp
+
+php artisan migrate
