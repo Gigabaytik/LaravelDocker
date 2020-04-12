@@ -20,6 +20,7 @@ services:
     working_dir: /var/www/app
     depends_on:
       - local_mysql
+      - local_redis
 
   local_mysql:
     image: mysql:5.7
@@ -32,3 +33,9 @@ services:
       MYSQL_USER: local
       MYSL_PASSWORD: 11111111
       MYSQL_ROOT_PASSWORD: password
+
+  local_redis:
+    image: redis:latest
+    container_name: local_redis
+    ports:
+      - 63799:6379
