@@ -9,6 +9,7 @@ Docker-compose wrapper for local Laravel project development.
 * mysql - 5.7
 * php - 7.4
 * redis - latest
+* socket.io (laravel-echo-server) - latest
 
 #### php container
 Installed php extensions: xml, tokenizer, openssl, mbstring, json, fileinfo, ctype, 

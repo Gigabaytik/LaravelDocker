@@ -21,6 +21,7 @@ services:
     depends_on:
       - local_mysql
       - local_redis
+      - local_websocket
 
   local_mysql:
     image: mysql:5.7
@@ -39,3 +40,12 @@ services:
     container_name: local_redis
     ports:
       - 63799:6379
+
+  local_websocket:
+    image: mintopia/laravel-echo-server:latest
+    container_name: local_websocket
+    restart: on-failure
+    ports:
+      - 60011:6001
+    depends_on:
+      - local_redis
