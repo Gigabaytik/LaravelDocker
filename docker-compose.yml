@@ -28,7 +28,7 @@ services:
     ports:
       - 33066:3306
     environment:
-      MYSQL_DATABASE: local_db
-      MYSQL_USER: local
-      MYSL_PASSWORD: 11111111
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ${DB_DATABASE:-local_db}
+      MYSQL_USER: ${DB_USERNAME:-local}
+      MYSL_PASSWORD: ${DB_PASSWORD:-11111111}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-password}
