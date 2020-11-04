@@ -6,7 +6,7 @@ Docker-compose wrapper for local Laravel project development.
 
 ### Components
 * nginx - stable
-* mysql - 5.7
+* mysql - 8
 * php - 7.4
 
 #### php container

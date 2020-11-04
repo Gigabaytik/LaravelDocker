@@ -70,4 +70,28 @@ RUN apt-get clean \
 
 # add deploy script
 ADD deploy /usr/local/bin/
-RUN chmod -R 777 /usr/local/bin/deploy
+RUN chmod -R 755 /usr/local/bin/deploy
+
+# setup user
+RUN apt-get update && apt-get install -y \
+    sudo
+
+ARG USERNAME
+ARG USER_ID
+ARG GROUP_ID
+
+RUN groupadd -g $GROUP_ID -o $USERNAME
+RUN useradd -m -u $USER_ID -g $GROUP_ID -o -s /bin/bash $USERNAME
+
+RUN usermod -aG www-data $USERNAME
+RUN usermod -aG sudo $USERNAME
+
+RUN echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers
+
+USER $USERNAME
+
+# setup path to global composer packages
+RUN echo "export PATH=\"$PATH:$HOME/.composer/vendor/bin\"" > $HOME/.bashrc
+
+# install PHP CS Fixer
+RUN composer global require friendsofphp/php-cs-fixer
