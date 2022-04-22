@@ -7,7 +7,7 @@ Docker-compose wrapper for local Laravel project development.
 ### Components
 * nginx - stable
 * mysql - 8
-* php - 7.4
+* php - 8.1
 
 #### php container
 Installed php extensions: xml, tokenizer, openssl, mbstring, json, fileinfo, ctype, 
@@ -19,27 +19,31 @@ Installed utils: curl, zip, unzip, git.
 * Clone laravel project into `src` dir. Do not forget to add `.gitkeep` to `.gitignore`:
 
   	git clone git@github.com:someone/expamle.git src
+	
+  Or just run:
+
+	sh docker/php-fpm/init-laravel.sh
 
 * Paste `.env` file into `src` dir. Do not forget to set credentials from `docker-compose.yml`;
 
 * Command for building docker environment:
 
-  	docker-compose build
+  	docker compose build
   	
 * Command for launching docker environment:
 
-  	docker-compose up -d
+  	docker compose up -d
 
 * Command for installation laravel project:
 
-  	docker-compose exec local_php bash -c "deploy"
+  	docker compose exec local_app bash -c "deploy"
 
 * Command for building and watch assets:
 
-  	docker-compose exec local_php npm run watch
+  	docker compose exec local_app npm run watch
 
 * Command for stopping docker containers:
 
-  	docker-compose down
+  	docker compose down
 
 * Do not forget to move to `src` dir before committing project changes.

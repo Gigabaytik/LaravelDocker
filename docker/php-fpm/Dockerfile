@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.1-fpm
 
 # extensions installed by image:
 # xml, tokenizer, openssl, mbstring, json, fileinfo, ctype,
@@ -61,7 +61,7 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # install node with npm
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install nodejs build-essential -y
 
 # clean
@@ -69,8 +69,8 @@ RUN apt-get clean \
     && rm -rf /var/lib/apt-get/lists/* /tmp/* /var/tmp/* /var/cache/*
 
 # add deploy script
-ADD deploy /usr/local/bin/
-RUN chmod -R 755 /usr/local/bin/deploy
+ADD deploy.sh /usr/local/bin/
+RUN chmod -R 755 /usr/local/bin/deploy.sh
 
 # setup user
 RUN apt-get update && apt-get install -y \
